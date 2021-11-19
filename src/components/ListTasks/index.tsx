@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import api from "../../services/api";
 import { ITask } from "../../store/modules/tasks/types";
+import { List } from "./styles";
 
-function List() {
+function ListTasks() {
   const [tasks, setTasks] = useState<ITask[]>([]);
 
   useEffect(() => {
@@ -12,9 +13,7 @@ function List() {
   }, []);
 
   return (
-    <>
-      <h1>Header</h1>
-
+    <List>
       {
         tasks.map(task => (
           <article key={task.id}>
@@ -24,8 +23,8 @@ function List() {
           </article>
         ))
       }
-    </>
+    </List>
   )
 }
 
-export default List;
+export default ListTasks;
