@@ -1,4 +1,4 @@
-import { Content, Page } from './styles'
+import { Container, Content, Page } from './styles'
 
 interface ListPageProps {
   handlePersonalList: () => void;
@@ -14,10 +14,12 @@ function ListPages({
   professionalActive
 }: ListPageProps) {
   return (
-    <Content>
-      <Page onClick={handlePersonalList} isActive={personalActive}>Pessoal</Page>
-      <Page onClick={handleProfessionalList} isActive={professionalActive}>Trabalho</Page>
-    </Content>
+    <Container>
+      <Content>
+        <Page onClick={handlePersonalList} isActive={personalActive}>Pessoal</Page>
+        <Page onClick={handleProfessionalList} isActive={professionalActive}>Trabalho</Page>
+      </Content>
+    </Container>
   )
 }
 

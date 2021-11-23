@@ -31,21 +31,23 @@ function ListTasks() {
   }, []);
 
   return (
-    <Content>
+    <>
       <ListPages 
         personalActive={personalIsCurrentPage}
         professionalActive={professionalIsCurrentPage}
         handlePersonalList={handlePersonalIsCurrentPage}
         handleProfessionalList={handleProfessionalIsCurrentPage}
       />
-      <List>
-        { 
-          personalIsCurrentPage
-            ? personalTasks.map(task => <TaskItem key={task.id} task={task} />)
-            : professionalTasks.map(task => <TaskItem key={task.id} task={task} />)
-        }
-      </List>
-    </Content>
+      <Content>
+        <List>
+          { 
+            personalIsCurrentPage
+              ? personalTasks.map(task => <TaskItem key={task.id} task={task} />)
+              : professionalTasks.map(task => <TaskItem key={task.id} task={task} />)
+          }
+        </List>
+      </Content>
+    </>
   )
 }
 

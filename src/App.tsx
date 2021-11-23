@@ -6,6 +6,7 @@ import Header from './components/Header';
 import ListTasks from './components/ListTasks';
 
 import { GlobalStyle } from './styles/global';
+import Footer from './components/Footer';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
       <Provider store={store}>
         <ListTasks />
       </Provider>
+      <Footer />
     </>
   );
 }

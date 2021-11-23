@@ -1,5 +1,5 @@
 import { ITask } from "../../store/modules/tasks/types";
-import { Actions, Container, Content } from './styles';
+import { Actions, ButtonTrash, Container, Content, TrashIcon } from './styles';
 
 interface TaskItemProps {
   task: ITask;
@@ -14,7 +14,9 @@ function TaskItem({ task }: TaskItemProps) {
         <span>{task.category}</span>
       </Content>
       <Actions>
-        <h1>t</h1>
+        <ButtonTrash>
+          <TrashIcon />
+        </ButtonTrash>
       </Actions>
     </Container>
   )

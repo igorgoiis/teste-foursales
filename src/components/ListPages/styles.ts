@@ -1,9 +1,16 @@
 import styled, { css } from "styled-components";
-import { Link } from 'react-router-dom'
 
 interface CurrentPage {
   isActive: boolean;
 }
+
+export const Container = styled.div`
+  position: fixed;
+  width: 100%;
+  top: 100px;
+  left: 0;
+  background-color: var(--background);
+`;
 
 export const Content = styled.div`
   display: flex;
