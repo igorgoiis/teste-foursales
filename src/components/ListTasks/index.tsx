@@ -1,29 +1,51 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import api from "../../services/api";
 import { ITask } from "../../store/modules/tasks/types";
-import { List } from "./styles";
+import ListPages from "../ListPages";
+import TaskItem from "../TaskItem";
+import { Content, List } from "./styles";
 
 function ListTasks() {
-  const [tasks, setTasks] = useState<ITask[]>([]);
+  const [personalTasks, setPersonalTasks] = useState<ITask[]>([]);
+  const [professionalTasks, setProfessionalTasks] = useState<ITask[]>([]);
+  const [personalIsCurrentPage, setPersonalIsCurrentPage] = useState(true);
+  const [professionalIsCurrentPage, setProfessionalIsCurrentPage] = useState(false);
+
+  const handlePersonalIsCurrentPage = () => {
+    setProfessionalIsCurrentPage(false);  
+    setPersonalIsCurrentPage(true);
+  };
+  
+  const handleProfessionalIsCurrentPage = () => {
+    setPersonalIsCurrentPage(false);
+    setProfessionalIsCurrentPage(true);  
+  };
 
   useEffect(() => {
     api.get('tasks').then(response => {
-      setTasks(response.data);
+      let personalTasks = response.data.filter((task: ITask) => task.category === 'personal');
+      let professionalTasks = response.data.filter((task: ITask) => task.category === 'work');
+      setPersonalTasks(personalTasks);
+      setProfessionalTasks(professionalTasks);
     })
   }, []);
 
   return (
-    <List>
-      {
-        tasks.map(task => (
-          <article key={task.id}>
-            <strong>{task.title}</strong>{"  -  "}
-            <span>{task.description}</span>{"  -  "}
-            <span>{task.category}</span>
-          </article>
-        ))
-      }
-    </List>
+    <Content>
+      <ListPages 
+        personalActive={personalIsCurrentPage}
+        professionalActive={professionalIsCurrentPage}
+        handlePersonalList={handlePersonalIsCurrentPage}
+        handleProfessionalList={handleProfessionalIsCurrentPage}
+      />
+      <List>
+        { 
+          personalIsCurrentPage
+            ? personalTasks.map(task => <TaskItem key={task.id} task={task} />)
+            : professionalTasks.map(task => <TaskItem key={task.id} task={task} />)
+        }
+      </List>
+    </Content>
   )
 }
 

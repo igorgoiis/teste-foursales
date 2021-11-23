@@ -1,11 +1,15 @@
 import styled from "styled-components";
 
-export const List = styled.div`
+export const Content = styled.div`
+  max-width: 1120px;
+  padding: 0 1rem ;
+  margin: 0 auto;
+`;
+
+export const List = styled.ul`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: red;
-  height: 80vh;
-  width: 500px;
+  row-gap: 30px;
 `;
