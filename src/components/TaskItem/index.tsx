@@ -1,4 +1,6 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
+import { useDispatch } from "react-redux";
+import { addTask } from "../../store/modules/tasks/actions";
 import { ITask } from "../../store/modules/tasks/types";
 import {
   Actions,
@@ -17,10 +19,15 @@ interface TaskItemProps {
 }
 
 function TaskItem({ task }: TaskItemProps) {
+  const dispatch = useDispatch();
   const [toogle, setToogle] = useState(true);
   const [title, setTitle] = useState(task.title);
   const [description, setDescription] = useState(task.description);
   const [category, setCategory] = useState(task.category);
+
+  const handleAddTask = useCallback((task: ITask) => {
+    dispatch(addTask(task));
+  }, [dispatch]);
 
   return (
     <>
@@ -38,7 +45,7 @@ function TaskItem({ task }: TaskItemProps) {
             </ButtonTrash>
           </Actions>
         </Container>
-      ) :(
+      ):(
         <Container key={task.id} >
           <Content>
             <Input 
@@ -71,7 +78,7 @@ function TaskItem({ task }: TaskItemProps) {
             </Select>
           </Content>
           <Actions>
-            <ButtonTrash onClick={e => setToogle(true)}>
+            <ButtonTrash onClick={() => handleAddTask(task)}>
               <SaveIcon />
             </ButtonTrash>
           </Actions>
