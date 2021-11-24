@@ -12,12 +12,20 @@ export const GlobalStyle = createGlobalStyle`
 
     --background: #f0f2f5;
     --shape: #ffffff;
+    --border: #dedede;
+    --shadow: #dddddd;
   }
   * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    
+    &:focus, &:focus-visible {
+      outline: none;
+    }
   }
+
+
 
   html {
     @media (max-width: 1080px) {

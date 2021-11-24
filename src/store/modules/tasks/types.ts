@@ -2,7 +2,7 @@ export interface ITask {
   id: number;
   title: string;
   description: string;
-  category: 'personal' | 'work';
+  category: string;
 }
 
 export interface ITasksState {

@@ -1,12 +1,13 @@
 import styled from "styled-components";
-import { FiTrash2 } from "react-icons/fi";
+import { FiTrash2, FiCheckCircle } from "react-icons/fi";
 
 export const Container = styled.li`
   display: flex;
   justify-content: center;
-  border: 1px solid #dddddd;
+  border: 1px solid var(--border);
   border-radius: 10px;
-  box-shadow: 0px 0px 10px 5px #dddddd;
+  box-shadow: 0px 0px 33px 5px var(--shadow);
+  min-width: 560px;
 `;
 
 export const Content = styled.div`
@@ -15,6 +16,9 @@ export const Content = styled.div`
   flex-basis: 85%;
   padding: 1rem 2rem;
 
+  .title, .description, .category {
+    color: var(--text-title);
+  }
 `;
 
 export const Actions = styled.div`
@@ -36,7 +40,54 @@ export const ButtonTrash = styled.button`
   }
 `;
 
+export const Input = styled.input`
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: .4rem .8rem;
+  margin-bottom: 6px;
+  background-color: var(--background);
+  color: var(--text-title);
+
+  &:focus, &:focus-visible {
+    outline: 0.8px solid var(--text-title);
+  }
+`;
+
+export const TextArea = styled.textarea`
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: .4rem .8rem;
+  margin-bottom: 6px;
+  background-color: var(--background);
+  color: var(--text-title);
+
+  &:focus, &:focus-visible {
+    outline: 0.8px solid var(--text-title);
+  }
+`;
+
+export const Select = styled.select`
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: .4rem .8rem;
+  margin-bottom: 6px;
+  background-color: var(--background);
+  color: var(--text-title);
+
+  &:focus, &:focus-visible {
+    outline: 0.8px solid var(--text-title);
+  }
+`;
+
 export const TrashIcon = styled(FiTrash2)`
   font-size: 25px;
-  color: #000;
+  color: var(--text-title);
+`;
+
+export const SaveIcon = styled(FiCheckCircle)`
+  font-size: 25px;
+  color: var(--text-title);
 `;
