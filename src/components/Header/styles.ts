@@ -1,5 +1,8 @@
 import styled from 'styled-components';
 
+
+
+
 export const Container = styled.header`
   display: flex;
   flex-direction: column;
@@ -11,6 +14,7 @@ export const Container = styled.header`
   top: 0;
   left: 0;
   background: var(--blue);
+  z-index: 1;
 `;
 
 export const Title = styled.h1`

@@ -25,8 +25,6 @@ export const GlobalStyle = createGlobalStyle`
     }
   }
 
-
-
   html {
     @media (max-width: 1080px) {
       font-size: 93.75%; //15px
@@ -63,4 +61,28 @@ export const GlobalStyle = createGlobalStyle`
     opacity: .6;
     cursor: not-allowed;
   }
+
+  .react-modal-overlay{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  z-index: 1;
+
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.react-modal-content {
+  width: 100%;
+  max-width: 576px;
+  background-color: var(--background);
+  padding: 3rem;
+  position: relative;
+  border-radius: .25rem;
+}
 `;

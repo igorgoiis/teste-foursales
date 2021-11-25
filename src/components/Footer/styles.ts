@@ -10,6 +10,6 @@ export const Container = styled.footer`
   position: fixed;
   bottom: 0;
   left: 0;
-  z-index: 999;
+  z-index: 1;
   background: var(--blue);
 `;

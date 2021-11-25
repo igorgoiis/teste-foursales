@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ITask } from "../../store/modules/tasks/types";
+import Checkbox from "@material-ui/core/Checkbox";
 import {
   Actions,
   ButtonTrash,
@@ -17,29 +18,41 @@ interface TaskItemProps {
 }
 
 function TaskItem({ task }: TaskItemProps) {
+  const [checked, setChecked] = useState(task.done);
   const [toogle, setToogle] = useState(true);
   const [title, setTitle] = useState(task.title);
   const [description, setDescription] = useState(task.description);
   const [category, setCategory] = useState(task.category);
 
+  const handleEditMode = () => {
+    !checked && setToogle(false);
+  };
+
+  useEffect(() => {
+    console.log(checked);
+  }, [checked]);
+  
   return (
     <>
     {
       toogle ? (
-        <Container key={task.id} onDoubleClick={() => setToogle(false)}>
+        <Container key={task.id} onDoubleClick={handleEditMode} checked={checked}>
+          <Checkbox checked={checked} onChange={() => {
+            setChecked(!checked);
+          }} />
           <Content>
             <h3 className="title" >{task.title}</h3>
             <span className="description" >{task.description}</span>
             <span className="category" >{task.category}</span>
           </Content>
           <Actions>
-            <ButtonTrash>
+            <ButtonTrash disabled={checked}>
               <TrashIcon />
             </ButtonTrash>
           </Actions>
         </Container>
       ) :(
-        <Container key={task.id} >
+        <Container key={task.id} checked={checked} >
           <Content>
             <Input 
               type="text"
@@ -49,6 +62,7 @@ function TaskItem({ task }: TaskItemProps) {
                 if (e.key === 'Enter' || e.key === 'Escape')
                   setToogle(true);
               }}
+              disabled={checked}
             />
 
             <TextArea 
@@ -61,13 +75,19 @@ function TaskItem({ task }: TaskItemProps) {
                 if (e.key === 'Enter' || e.key === 'Escape')
                   setToogle(true);
               }}
+              disabled={checked}
             />
 
-            <Select name={`task${task.id}-category`} id={`task${task.id}-category`} onChange={e => {
-              console.log(e.target.value);
-            }} >
-                <option value="personal">Pessoal</option>
-                <option value="work">Trabalho</option>
+            <Select 
+              name={`task${task.id}-category`} 
+              id={`task${task.id}-category`} 
+              onChange={e => {
+                console.log(e.target.value);
+              }} 
+              disabled={checked}
+            >
+              <option value="personal">Pessoal</option>
+              <option value="work">Trabalho</option>
             </Select>
           </Content>
           <Actions>

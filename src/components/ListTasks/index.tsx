@@ -5,7 +5,11 @@ import ListPages from "../ListPages";
 import TaskItem from "../TaskItem";
 import { Content, List } from "./styles";
 
-function ListTasks() {
+interface ListTaslProps {
+  onOpenNewTaskModal: () => void
+}
+
+function ListTasks({ onOpenNewTaskModal }: ListTaslProps) {
   const [personalTasks, setPersonalTasks] = useState<ITask[]>([]);
   const [professionalTasks, setProfessionalTasks] = useState<ITask[]>([]);
   const [personalIsCurrentPage, setPersonalIsCurrentPage] = useState(true);
@@ -35,8 +39,9 @@ function ListTasks() {
       <ListPages 
         personalActive={personalIsCurrentPage}
         professionalActive={professionalIsCurrentPage}
-        handlePersonalList={handlePersonalIsCurrentPage}
-        handleProfessionalList={handleProfessionalIsCurrentPage}
+        onPersonalList={handlePersonalIsCurrentPage}
+        onProfessionalList={handleProfessionalIsCurrentPage}
+        onOpenNewTaskModal={onOpenNewTaskModal}
       />
       <Content>
         <List>
@@ -46,6 +51,7 @@ function ListTasks() {
               : professionalTasks.map(task => <TaskItem key={task.id} task={task} />)
           }
         </List>
+        
       </Content>
     </>
   )

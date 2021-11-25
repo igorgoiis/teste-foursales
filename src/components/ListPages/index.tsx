@@ -1,23 +1,32 @@
-import { Container, Content, Page } from './styles'
+import { ButtonAddTask, Container, Content, Page } from './styles'
 
 interface ListPageProps {
-  handlePersonalList: () => void;
-  handleProfessionalList: () => void;
+  onPersonalList: () => void;
+  onProfessionalList: () => void;
+  onOpenNewTaskModal: () => void;
   personalActive: boolean;
   professionalActive: boolean;
 }
 
 function ListPages({
-  handlePersonalList,
-  handleProfessionalList,
+  onPersonalList,
+  onProfessionalList,
+  onOpenNewTaskModal,
   personalActive,
   professionalActive
 }: ListPageProps) {
   return (
     <Container>
       <Content>
-        <Page onClick={handlePersonalList} isActive={personalActive}>Pessoal</Page>
-        <Page onClick={handleProfessionalList} isActive={professionalActive}>Trabalho</Page>
+        <div>
+          <Page onClick={onPersonalList} isActive={personalActive}>Pessoal</Page>
+          <Page onClick={onProfessionalList} isActive={professionalActive}>Trabalho</Page>
+        </div>
+        <ButtonAddTask onClick={onOpenNewTaskModal}>
+          <span>Nova Tarefa</span>
+        </ButtonAddTask>
+
+        
       </Content>
     </Container>
   )

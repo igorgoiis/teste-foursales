@@ -3,6 +3,7 @@ export interface ITask {
   title: string;
   description: string;
   category: string;
+  done: boolean;
 }
 
 export interface ITasksState {

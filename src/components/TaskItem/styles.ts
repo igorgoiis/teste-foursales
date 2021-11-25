@@ -1,23 +1,52 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { FiTrash2, FiCheckCircle } from "react-icons/fi";
 
-export const Container = styled.li`
+interface CheckProps {
+  checked: boolean;
+}
+
+export const Container = styled.li<CheckProps>`
   display: flex;
   justify-content: center;
+  align-items: center;
+  width: 560px;
+  padding: 1rem 2rem;
   border: 1px solid var(--border);
   border-radius: 10px;
   box-shadow: 0px 0px 33px 5px var(--shadow);
-  min-width: 560px;
+  column-gap: 20px;
+
+  ${props => props.checked && css`
+    opacity: .5;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
+    .title, .description, .category {
+      opacity: .5;
+      -webkit-touch-callout: none;
+      -webkit-user-select: none;
+      -khtml-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      text-decoration: line-through;
+    }
+  `}
 `;
 
 export const Content = styled.div`
   display: flex;
   flex-direction: column;
   flex-basis: 85%;
-  padding: 1rem 2rem;
 
   .title, .description, .category {
     color: var(--text-title);
+    word-break: break-all;
+    word-wrap: break-word;
   }
 `;
 
