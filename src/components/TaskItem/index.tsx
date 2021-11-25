@@ -1,4 +1,10 @@
+<<<<<<< HEAD
 import { useEffect, useState } from "react";
+=======
+import { useCallback, useState } from "react";
+import { useDispatch } from "react-redux";
+import { addTask } from "../../store/modules/tasks/actions";
+>>>>>>> fb03070449a50db764a4557eaa81e42e3a3d770c
 import { ITask } from "../../store/modules/tasks/types";
 import Checkbox from "@material-ui/core/Checkbox";
 import {
@@ -18,12 +24,17 @@ interface TaskItemProps {
 }
 
 function TaskItem({ task }: TaskItemProps) {
+<<<<<<< HEAD
   const [checked, setChecked] = useState(task.done);
+=======
+  const dispatch = useDispatch();
+>>>>>>> fb03070449a50db764a4557eaa81e42e3a3d770c
   const [toogle, setToogle] = useState(true);
   const [title, setTitle] = useState(task.title);
   const [description, setDescription] = useState(task.description);
   const [category, setCategory] = useState(task.category);
 
+<<<<<<< HEAD
   const handleEditMode = () => {
     !checked && setToogle(false);
   };
@@ -32,6 +43,12 @@ function TaskItem({ task }: TaskItemProps) {
     console.log(checked);
   }, [checked]);
   
+=======
+  const handleAddTask = useCallback((task: ITask) => {
+    dispatch(addTask(task));
+  }, [dispatch]);
+
+>>>>>>> fb03070449a50db764a4557eaa81e42e3a3d770c
   return (
     <>
     {
@@ -51,8 +68,13 @@ function TaskItem({ task }: TaskItemProps) {
             </ButtonTrash>
           </Actions>
         </Container>
+<<<<<<< HEAD
       ) :(
         <Container key={task.id} checked={checked} >
+=======
+      ):(
+        <Container key={task.id} >
+>>>>>>> fb03070449a50db764a4557eaa81e42e3a3d770c
           <Content>
             <Input 
               type="text"
@@ -91,7 +113,7 @@ function TaskItem({ task }: TaskItemProps) {
             </Select>
           </Content>
           <Actions>
-            <ButtonTrash onClick={e => setToogle(true)}>
+            <ButtonTrash onClick={() => handleAddTask(task)}>
               <SaveIcon />
             </ButtonTrash>
           </Actions>
