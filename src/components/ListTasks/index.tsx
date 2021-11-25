@@ -6,16 +6,13 @@ import ListPages from "../ListPages";
 import TaskItem from "../TaskItem";
 import { Content, List } from "./styles";
 
-<<<<<<< HEAD
 interface ListTaslProps {
   onOpenNewTaskModal: () => void
 }
 
 function ListTasks({ onOpenNewTaskModal }: ListTaslProps) {
-=======
-function ListTasks() {
+
   const state = useSelector(state => state);
->>>>>>> fb03070449a50db764a4557eaa81e42e3a3d770c
   const [personalTasks, setPersonalTasks] = useState<ITask[]>([]);
   const [professionalTasks, setProfessionalTasks] = useState<ITask[]>([]);
   const [personalIsCurrentPage, setPersonalIsCurrentPage] = useState(true);
