@@ -14,7 +14,8 @@ export const Container = styled.li<CheckProps>`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 560px;
+  width: 100%;
+  max-width: 576px;
   padding: 1rem 2rem;
   border: 1px solid var(--border);
   border-radius: 10px;

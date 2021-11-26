@@ -31,7 +31,7 @@ export const ButtonAddTask = styled.button`
   align-items: center;
   column-gap: 8px;
   margin: .7rem .9rem .7rem 0;
-  padding: .3rem 2rem;
+  padding: .3rem 1rem;
   background-color: var(--blue-light);
   font-size: 1rem;
   color: var(--shape);
