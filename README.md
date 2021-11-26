@@ -13,10 +13,10 @@ Criar um TO DO app para criar tarefas com duas categorias distintas, Pessoal e P
 
 ## Ferramentas
 ____
-* ** _ReactJS_**
-* ** _Redux_**
-* ** _ImmerJS_**
-* ** Styled Components**
+* **_ReactJS_**
+* **_Redux_**
+* **_ImmerJS_**
+* **_Styled Components_**
 
 ## Para executar o app:
 
