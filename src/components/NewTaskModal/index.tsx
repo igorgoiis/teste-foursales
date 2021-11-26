@@ -1,7 +1,12 @@
 import { FormEvent, useState } from 'react';
+import { useDispatch } from "react-redux";
 import Modal from 'react-modal';
-import { Container, TaskCategoryContainer, RadioBox } from './styles';
 import { FiPlus } from "react-icons/fi";
+
+import { addTaskPersonal } from "../../store/modules/tasksPersonal/actions";
+import { addTaskWork } from "../../store/modules/tasksWork/actions";
+// import { ITask } from "../../store/modules/tasksPersonal/types";
+import { Container, TaskCategoryContainer, RadioBox } from './styles';
 
 interface NewTaskModalProps {
   isOpen: boolean;
@@ -9,18 +14,35 @@ interface NewTaskModalProps {
 }
 
 function NewTaskModal({ isOpen, onRequestClose }: NewTaskModalProps) {
+  const dispatch = useDispatch();
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [category, setCategory] = useState('personal');
 
   function handleCreateNewTask(event: FormEvent) {
     event.preventDefault();
+    if (category === 'personal') {
+      dispatch(addTaskPersonal({
+        id: Math.floor(Math.random() * 1000),
+        title,
+        description,
+        category,
+        done: false
+      }));
+    } else {
+      dispatch(addTaskWork({
+        id: Math.floor(Math.random() * 1000),
+        title,
+        description,
+        category,
+        done: false
+      }));
+    }
 
-    console.log({
-      title,
-      description,
-      category
-    });
+    setTitle('');
+    setDescription('');
+    setCategory('personal');
+    onRequestClose();
   }
 
   return (
@@ -52,8 +74,7 @@ function NewTaskModal({ isOpen, onRequestClose }: NewTaskModalProps) {
           value={description}
           onChange={(e) => setDescription(e.target.value)}
         />
-
-
+        <span>Caracteres:  {description.length}/100</span>
 
         <TaskCategoryContainer>
           <RadioBox

@@ -1,6 +1,8 @@
 import { combineReducers } from "redux";
-import tasks from "./tasks/reducer";
+import tasksPersonal from "./tasksPersonal/reducer";
+import tasksWork from "./tasksWork/reducer";
 
 export default combineReducers({
-  tasks,
+  tasksPersonal,
+  tasksWork
 })

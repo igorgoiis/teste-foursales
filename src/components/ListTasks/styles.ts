@@ -12,4 +12,8 @@ export const List = styled.ul`
   justify-content: center;
   align-items: center;
   row-gap: 30px;
+
+  span {
+    color: var(--text-body);
+  }
 `;

@@ -5,7 +5,6 @@ interface RadioBoxProps {
     isActive: boolean;
 }
 
-
 export const Container = styled.form`
     h2 {
         color: var(--text-title);
@@ -39,7 +38,7 @@ export const Container = styled.form`
     textarea {
         width: 100%;
         padding: 1rem 1.5rem;
-        margin: 1rem 0 !important;
+        margin: 1rem 0 0 !important;
         height: 4rem;
 
         font-weight: 400;
@@ -54,6 +53,11 @@ export const Container = styled.form`
         &::placeholder {
             color: var(--text-body);
         }
+    }
+
+    textarea + span {
+        font-size: .8rem;
+        color: var(--text-body);
     }
 
     button[type="submit"] {

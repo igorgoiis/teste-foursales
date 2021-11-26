@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useSelector } from "react-redux";
-import api from "../../services/api";
-import { ITask } from "../../store/modules/tasks/types";
+import { IState } from "../../store";
+import { ITask } from "../../store/modules/tasksPersonal/types";
 import ListPages from "../ListPages";
 import TaskItem from "../TaskItem";
 import { Content, List } from "./styles";
@@ -11,14 +11,10 @@ interface ListTaslProps {
 }
 
 function ListTasks({ onOpenNewTaskModal }: ListTaslProps) {
-
-  const state = useSelector(state => state);
-  const [personalTasks, setPersonalTasks] = useState<ITask[]>([]);
-  const [professionalTasks, setProfessionalTasks] = useState<ITask[]>([]);
+  const personalTasks = useSelector<IState, ITask[]>(state => state.tasksPersonal.tasks);
+  const professionalTasks = useSelector<IState, ITask[]>(state => state.tasksWork.tasks);
   const [personalIsCurrentPage, setPersonalIsCurrentPage] = useState(true);
   const [professionalIsCurrentPage, setProfessionalIsCurrentPage] = useState(false);
-
-  console.log(state);
   
   const handlePersonalIsCurrentPage = () => {
     setProfessionalIsCurrentPage(false);  
@@ -29,15 +25,6 @@ function ListTasks({ onOpenNewTaskModal }: ListTaslProps) {
     setPersonalIsCurrentPage(false);
     setProfessionalIsCurrentPage(true);  
   };
-
-  useEffect(() => {
-    api.get('tasks').then(response => {
-      let personalTasks = response.data.filter((task: ITask) => task.category === 'personal');
-      let professionalTasks = response.data.filter((task: ITask) => task.category === 'work');
-      setPersonalTasks(personalTasks);
-      setProfessionalTasks(professionalTasks);
-    })
-  }, []);
 
   return (
     <>
@@ -52,8 +39,16 @@ function ListTasks({ onOpenNewTaskModal }: ListTaslProps) {
         <List>
           { 
             personalIsCurrentPage
-              ? personalTasks.map(task => <TaskItem key={task.id} task={task} />)
-              : professionalTasks.map(task => <TaskItem key={task.id} task={task} />)
+              ? (
+                personalTasks.length !== 0 
+                  ? personalTasks.map(task => <TaskItem key={task.id} task={task} />)
+                  : <span>Não há tarefas pessoais cadastradas</span>
+              )
+              : (
+                professionalTasks.length !== 0
+                  ? professionalTasks.map(task => <TaskItem key={task.id} task={task} />)
+                  : <span>Não há tarefas profissionais cadastradas</span>
+              )
           }
         </List>
         
