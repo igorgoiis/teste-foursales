@@ -44,4 +44,9 @@ npm install
 yarn start
 ~~~
 
-![Print Screen](src/assets/exemplo.png)
+## Prints do app:
+
+![Print Screen](public/assets/Tela1.png)
+![Print Screen](public/assets/Tela2.png)
+![Print Screen](public/assets/Tela3.png)
+![Print Screen](public/assets/Tela4.png)
